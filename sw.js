@@ -1,15 +1,15 @@
 // Guarda a app no telemóvel para funcionar sem internet.
 // Quando mudares algum ficheiro, sobe o número da versão para os telemóveis receberem a atualização.
-const CACHE = "limites-v1";
+const CACHE = "limites-v2";
 const FILES = [
   "./",
   "index.html",
   "style.css",
   "app.js",
   "manifest.webmanifest",
-  "icons/apple-touch-icon.png",
-  "icons/icon-192.png",
-  "icons/icon-512.png",
+  "apple-touch-icon.png",
+  "icon-192.png",
+  "icon-512.png",
 ];
 
 self.addEventListener("install", (e) => {
