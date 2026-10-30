@@ -1,6 +1,6 @@
 // Guarda a app no telemóvel para funcionar sem internet.
 // Quando mudares algum ficheiro, sobe o número da versão para os telemóveis receberem a atualização.
-const CACHE = "limites-v2";
+const CACHE = "limites-v4";
 const FILES = [
   "./",
   "index.html",

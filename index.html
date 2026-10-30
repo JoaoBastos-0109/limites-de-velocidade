@@ -28,7 +28,11 @@
         <div class="score"><dt>Seguidas</dt><dd id="streakCount">0</dd></div>
         <div class="score"><dt>Recorde</dt><dd id="bestCount">0</dd></div>
       </dl>
-      <button type="button" class="link-btn" id="openTable">Ver tabela</button>
+      <button type="button" class="chip menu-btn" id="openMenu" aria-haspopup="dialog">
+        <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Menu
+        <span class="menu-dot" id="filterDot" hidden></span>
+      </button>
     </header>
 
     <section class="question" aria-live="polite">
@@ -64,18 +68,81 @@
 
   </main>
 
+  <!-- Menu -->
+  <dialog class="sheet menu-sheet" id="menuDialog" aria-labelledby="menuTitle">
+    <div class="sheet-head">
+      <h2 id="menuTitle">Menu</h2>
+      <button type="button" class="link-btn" id="closeMenu">Fechar</button>
+    </div>
+    <ul class="menu-list">
+      <li><button type="button" id="openChoose">
+        <span class="menu-text">Escolher perguntas<small id="menuChooseSub"></small></span>
+        <svg viewBox="0 0 10 16" width="9" height="15" aria-hidden="true"><path d="M2 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button></li>
+      <li><button type="button" id="openErrors">
+        <span class="menu-text">Onde erras mais<small id="menuErrorsSub"></small></span>
+        <svg viewBox="0 0 10 16" width="9" height="15" aria-hidden="true"><path d="M2 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button></li>
+      <li><button type="button" id="openTable">
+        <span class="menu-text">Tabela de limites<small>Todos os limites em km/h</small></span>
+        <svg viewBox="0 0 10 16" width="9" height="15" aria-hidden="true"><path d="M2 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button></li>
+    </ul>
+  </dialog>
+
+  <!-- Escolher veículos e vias -->
+  <dialog class="sheet" id="chooseDialog" aria-labelledby="chooseTitle">
+    <div class="sheet-head">
+      <h2 id="chooseTitle">Escolher perguntas</h2>
+      <button type="button" class="link-btn" id="closeChoose">Feito</button>
+    </div>
+    <div class="sheet-body">
+      <h3 class="group-title">Vias</h3>
+      <ul class="check-list" id="roadList"></ul>
+
+      <div class="group-head">
+        <h3 class="group-title">Veículos</h3>
+        <div class="group-actions">
+          <button type="button" class="link-btn small" id="selectAll">Todos</button>
+          <button type="button" class="link-btn small" id="selectNone">Nenhum</button>
+        </div>
+      </div>
+      <ul class="check-list" id="vehicleList"></ul>
+    </div>
+    <p class="sheet-foot" id="poolInfo"></p>
+  </dialog>
+
+  <!-- Erros -->
+  <dialog class="sheet" id="errorsDialog" aria-labelledby="errorsTitle">
+    <div class="sheet-head">
+      <h2 id="errorsTitle">Onde erras mais</h2>
+      <button type="button" class="link-btn" id="closeErrors">Fechar</button>
+    </div>
+    <div class="segmented" role="tablist" aria-label="Ver erros por">
+      <button type="button" role="tab" data-tab="questions" aria-selected="true">Perguntas</button>
+      <button type="button" role="tab" data-tab="vehicles" aria-selected="false">Veículos</button>
+      <button type="button" role="tab" data-tab="roads" aria-selected="false">Vias</button>
+    </div>
+    <div class="sheet-body">
+      <ol class="error-list" id="errorList"></ol>
+    </div>
+    <div class="sheet-foot">
+      <button type="button" class="reset-btn" id="resetStats">Apagar estatísticas e contadores</button>
+    </div>
+  </dialog>
+
+  <!-- Tabela -->
   <dialog class="sheet" id="tableDialog" aria-labelledby="tableTitle">
     <div class="sheet-head">
       <h2 id="tableTitle">Limites em km/h</h2>
       <button type="button" class="link-btn" id="closeTable">Fechar</button>
     </div>
-    <div class="table-wrap">
+    <div class="sheet-body table-wrap">
       <table class="limits">
         <thead><tr id="tableHead"><th scope="col">Veículo</th></tr></thead>
         <tbody id="tableBody"></tbody>
       </table>
     </div>
-    <button type="button" class="reset-btn" id="resetScores">Pôr contadores a zero</button>
   </dialog>
 
   <script src="app.js"></script>
